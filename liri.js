@@ -26,51 +26,29 @@ if (action === "my-tweets"){
 	  	}
 	});
 } else if (action==="spotify-this-song"){
-	if (song !== ""){
+	if (song){
 		spotify.search({ type: 'track', query: song}, function(err, data) {
 		  	if (err) {
 			    return console.log('Error occurred: ' + err);
 		 	} else {
-		 		// var short = data.tracks.items[0].artists
-
-		 		// for (var key in short[key]){
-		 		// 	console.log(short[key]);
-		 		// 	console.log(short.length);
-		 		// }
-
-		 		console.log(data.tracks.items[0])
-
-		 		console.log("Song Artist: " + data.tracks.items[i]);
-		 		console.log("Song Artist: " + JSON.stringify(data.tracks.items[0].artists));
 		 		console.log("Song Artist: " + data.tracks.items[0].artists[0].name);
-
 		 		console.log("Song Name: " + data.tracks.items[0].name);
 		 		console.log("Song Preview: " + data.tracks.items[0].preview_url);
 		 		console.log("Song Album: " + data.tracks.items[0].album.name);
 		 	}
 		})
-	// } else {
-	// 	spotify.search({ type: 'track', query: ""}, function(err, data) {
-	// 	  	if (err) {
-	// 		    return console.log('Error occurred: ' + err);
-	// 	 	} else {
-	// 	 		// var short = data.tracks.items[0].artists
-
-	// 	 		// for (var key in short[key]){
-	// 	 		// 	console.log(short[key]);
-	// 	 		// 	console.log(short.length);
-	// 	 		// }
-
-	// 	 		console.log(data.tracks.items[0])
-
-	// 	 		console.log("Song Artist: " + data.tracks.items[i]);
-	// 	 		console.log("Song Artist: " + JSON.stringify(data.tracks.items[0].artists));
-	// 	 		console.log("Song Artist: " + data.tracks.items[0].artists[0].name);
-
-	// 	 		console.log("Song Name: " + data.tracks.items[0].name);
-	// 	 		console.log("Song Preview: " + data.tracks.items[0].preview_url);
-	// 	 		console.log("Song Album: " + data.tracks.items[0].album.name);
-	// 	 	}
-	// 	})
-	// }
+	} else {
+		// song = 'The Sign';
+		// console.log(song);
+		spotify.search({ type: 'track', query: 'The Sign Ace of Base'}, function(err, data) {
+		  	if (err) {
+			    return console.log('Error occurred: ' + err);
+		 	} else {
+		 		console.log("Song Artist: " + data.tracks.items[0].artists[0].name);
+		 		console.log("Song Name: " + data.tracks.items[0].name);
+		 		console.log("Song Preview: " + data.tracks.items[0].preview_url);
+		 		console.log("Song Album: " + data.tracks.items[0].album.name);
+		 	}
+		})
+	}
 }
