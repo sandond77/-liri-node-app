@@ -3,12 +3,14 @@ require("dotenv").config();
 var keys = require("./keys.js");
 var Twitter = require('twitter');
 var Spotify = require('node-spotify-api');
+var request = require('request');
 
 var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
 
-var action = process.argv[2]
-var song = process.argv[3];
+var action = process.argv[2];
+var song = "The Sign Ace of Base";
+var movie = process.argv[3];
 
 if (action === "my-tweets"){
 	var params = {
@@ -26,29 +28,23 @@ if (action === "my-tweets"){
 	  	}
 	});
 } else if (action==="spotify-this-song"){
-	if (song){
-		spotify.search({ type: 'track', query: song}, function(err, data) {
-		  	if (err) {
-			    return console.log('Error occurred: ' + err);
-		 	} else {
-		 		console.log("Song Artist: " + data.tracks.items[0].artists[0].name);
-		 		console.log("Song Name: " + data.tracks.items[0].name);
-		 		console.log("Song Preview: " + data.tracks.items[0].preview_url);
-		 		console.log("Song Album: " + data.tracks.items[0].album.name);
-		 	}
-		})
-	} else {
-		// song = 'The Sign';
-		// console.log(song);
-		spotify.search({ type: 'track', query: 'The Sign Ace of Base'}, function(err, data) {
-		  	if (err) {
-			    return console.log('Error occurred: ' + err);
-		 	} else {
-		 		console.log("Song Artist: " + data.tracks.items[0].artists[0].name);
-		 		console.log("Song Name: " + data.tracks.items[0].name);
-		 		console.log("Song Preview: " + data.tracks.items[0].preview_url);
-		 		console.log("Song Album: " + data.tracks.items[0].album.name);
-		 	}
-		})
+	if (process.argv[3]) { //if there is a specific song name inputed, this will change search paramaters
+		song = process.argv[3];
 	}
+	spotify.search({ type: 'track', query: song}, function(err, data) {
+	  	if (err) {
+		    return console.log('Error occurred: ' + err);
+	 	} else {
+	 		console.log("Song Artist: " + data.tracks.items[0].artists[0].name);
+	 		console.log("Song Name: " + data.tracks.items[0].name);
+	 		console.log("Song Preview: " + data.tracks.items[0].preview_url);
+	 		console.log("Song Album: " + data.tracks.items[0].album.name);
+	 	}
+	})
+	
+// } else if (action==="movie-this"){
+// 	if (movie){
+
+// 	} else {
+// 	}
 }
