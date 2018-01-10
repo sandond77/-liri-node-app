@@ -48,13 +48,14 @@ if (action === "my-tweets"){
 		movie = process.argv[3];
 	}
 
-	request('http://www.google.com', function (error, response, body) {
+	request('http://www.omdbapi.com/?apikey=449c886e&t=' + movie, function (error, response, body) {
 		if (error){
 	  		console.log('error:', error); // Print the error if one occurred
 	  	} else {
-			console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-		  	console.log('body:', body); 
-			};
+	  		body = JSON.parse(body);
+	  		console.log(body);
+		  	console.log("Movie Title: " + body[0]); 
+		};
 	});	
 
 // } else {
