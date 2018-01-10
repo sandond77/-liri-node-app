@@ -10,7 +10,7 @@ var client = new Twitter(keys.twitter);
 
 var action = process.argv[2];
 var song = "The Sign Ace of Base";
-var movie = process.argv[3];
+var movie = "Mr. Nobody";
 
 if (action === "my-tweets"){
 	var params = {
@@ -19,11 +19,13 @@ if (action === "my-tweets"){
 	};
 
 	client.get('statuses/user_timeline', params, function(error, tweets, response) {
-	  	if (!error) {
-	  		for (var i = 0; i < tweets.length; i++) {
-	  			console.log("Tweet: " + tweets[i].text); //pulls the tweet
-	  			console.log("Tweeter: @" + tweets[i].user.screen_name); //pulls the twitter handle
-	  			console.log("Date Tweeted (GMT Time): " + tweets[i].created_at + "\n"); //pulls the date
+		if (error){
+  		console.log('error:', error); // Print the error if one occurred
+  		} else {	
+		  	for (var i = 0; i < tweets.length; i++) {
+		  			console.log("Tweet: " + tweets[i].text); //pulls the tweet
+		  			console.log("Tweeter: @" + tweets[i].user.screen_name); //pulls the twitter handle
+		  			console.log("Date Tweeted (GMT Time): " + tweets[i].created_at + "\n"); //pulls the date
 	  		}
 	  	}
 	});
@@ -40,11 +42,21 @@ if (action === "my-tweets"){
 	 		console.log("Song Preview: " + data.tracks.items[0].preview_url);
 	 		console.log("Song Album: " + data.tracks.items[0].album.name);
 	 	}
-	})
-	
-// } else if (action==="movie-this"){
-// 	if (movie){
+	})	
+} else if (action==="movie-this"){
+	if (process.argv[3]){
+		movie = process.argv[3];
+	}
 
-// 	} else {
+	request('http://www.google.com', function (error, response, body) {
+		if (error){
+	  		console.log('error:', error); // Print the error if one occurred
+	  	} else {
+			console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+		  	console.log('body:', body); 
+			};
+	});	
+
+// } else {
 // 	}
 }
