@@ -17,7 +17,7 @@ var handle = "sandond77";
 liri(action,process.argv[3]);
 
 function liri(action,search){
-	fs.appendFile('log.txt', action + ' \n', (err) => {
+	fs.appendFile('log.txt', "Command(s) Entered: " + action + ' ' + search + '\n' + '\n', (err) => {
 	  	if (err) throw err;
 	});
 
@@ -47,9 +47,13 @@ function twitter(arg){
   		console.log('error:', error); // Print the error if one occurred
   		} else {	
 		  	for (var i = 0; i < tweets.length; i++) {
-		  			console.log("Tweet: " + tweets[i].text); //pulls the tweet
-		  			console.log("Tweeter: @" + tweets[i].user.screen_name); //pulls the twitter handle
-		  			console.log("Date Tweeted (GMT Time): " + tweets[i].created_at + "\n"); //pulls the date
+	  			console.log("Tweet: " + tweets[i].text); //pulls the tweet
+	  			console.log("Tweeter: @" + tweets[i].user.screen_name); //pulls the twitter handle
+	  			console.log("Date Tweeted (GMT Time): " + tweets[i].created_at + '\n'); //pulls the date
+
+  				fs.appendFile('log.txt', "Tweet: " + tweets[i].text + ' \n' + "Tweeter: @" + tweets[i].user.screen_name + '\n' + "Date Tweeted (GMT Time): " + tweets[i].created_at + '\n' + '\n', (err) => {
+				  	if (err) throw err;
+				});
 	  		}
 	  	}
 	});
@@ -67,6 +71,10 @@ function music(arg){
 	 		console.log("Song Name: " + data.tracks.items[0].name);
 	 		console.log("Song Preview: " + data.tracks.items[0].preview_url);
 	 		console.log("Song Album: " + data.tracks.items[0].album.name + '\n');
+
+			fs.appendFile('log.txt', "Song Artist: " + data.tracks.items[0].artists[0].name + ' \n' + "Song Name: " + data.tracks.items[0].name + '\n' + "Song Preview: " + data.tracks.items[0].preview_url + '\n' + "Song Album: " + data.tracks.items[0].album.name + '\n' + '\n', (err) => {
+			  	if (err) throw err;
+			});
 	 	}
 	})	
 }
@@ -89,6 +97,14 @@ function movies(arg){
 		  	console.log("Language: " + body.Language); 
 		  	console.log("Plot: " + body.Plot); 
 		  	console.log("Actors: " + body.Actors + '\n'); 
+
+			fs.appendFile('log.txt', "Movie Title: " + body.Title + ' \n' + "Release Year: " + body.Released+ '\n' + "IMDB Rating: " + body.imdbRating + '\n' + "Rotten Tomatoes Rating: " + body.Ratings[1].Value + '\n', (err) => {
+			  	if (err) throw err;
+			});
+
+			fs.appendFile('log.txt', "Country of Production: " + body.Country + ' \n' + "Language: " + body.Language + '\n' + "Plot: " + body.Plot + '\n' + "Actors: " + body.Actors + '\n' + '\n', (err) => {
+			  	if (err) throw err;
+			});
 		};
 	});	
 }
@@ -99,6 +115,10 @@ function read(){
 		console.log("Error reading file: ", error)
 		} else {
 			var dataArray = data.split(',');
+
+			fs.appendFile('log.txt', "Command(s) Read from random.txt: " + dataArray[0] + ' ' + dataArray[1] + '\n', (err) => {
+	  			if (err) throw err;
+			});
 			liri(dataArray[0],dataArray[1]);
 		}
 	})
