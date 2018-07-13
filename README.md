@@ -55,11 +55,11 @@ node liri.js movie-this
 ```
 
 ### Do What It Says
-The Do what it says command will randomly choose a function that you've already called upon. It can be called with the following command:
+The Do what it says command will randomly choose a function thats listed in the "random.txt" file. It can be called with the following command:
 ```
 node liri.js do-what-it-says
 ```
-
+Users can change the function by overwriting the text in the "random.txt" file.
 
 ### Data Output
 All of the data from these commands are logged in the included "log.txt" file.
