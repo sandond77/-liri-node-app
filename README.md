@@ -54,12 +54,12 @@ If no movie name is specified, the application will search up the movie "Mr. Nob
 node liri.js movie-this
 ```
 
-#### Do What It Says
+### Do What It Says
 The Do what it says command will randomly choose a function that you've already called upon. It can be called with the following command:
 ```
 node liri.js do-what-it-says
 ```
 
 
-#### Data Output
+### Data Output
 All of the data from these commands are logged in the included "log.txt" file.
