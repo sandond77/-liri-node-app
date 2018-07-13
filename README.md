@@ -4,7 +4,7 @@
 Liri is a node.js based command line application that functions similar to Apple's Siri AI. It allows the user to call on the Twitter, Spotify, and OMDB APIs for information. See the sections below for information about using these functions.
 
 
-####Note: For the protect of my own API access tokens/keys, the user must supply their own Spotify and Twitter access tokens/keys to use this application. Access tokens/keys can be created by creating accounts for the Spotify and Twitter dev websites. The user must create a .env file and fill out the information in the formatting below:
+##### Note: For the protect of my own API access tokens/keys, the user must supply their own Spotify and Twitter access tokens/keys to use this application. Access tokens/keys can be created by creating accounts for the Spotify and Twitter dev websites. The user must create a .env file and fill out the information in the formatting below:
 
 ```
 # Spotify API keys
